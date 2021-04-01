@@ -2,5 +2,35 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<h1>this is the home page</h1>
+
+<br>
+<form method="POST">
+    <label for="category">Categoria do problema</label>
+
+    <select name="category" id="category">
+      <option value="rede">Rede</option>
+      <option value="materiaprima">Matéria Prima</option>
+      <option value="produto">Produto</option>
+      <option value="laser">Marcação na Laser</option>
+    </select> 
+    <br></br>
+
+    <label for="start_date">Data inicial :</label>
+    <input type="datetime-local" id="start_date" name="start_date">
+    <label for="final_date">Data Final :</label>
+    <input type="datetime-local" id="final_date" name="final_date">
+    <br>
+    <label for ="description">Digite uma descrição do problema</label>   
+    <textarea name="description" id="description" class="form-control"></textarea>
+    <br>
+    <label for ="cause_issue">Digite uma breve descrição da causa</label>   
+    <textarea name="cause_issue" id="cause_issue" class="form-control"></textarea>
+    <br>
+    <label for ="solution_issue">Digite uma descrição da solução</label>   
+    <textarea name="solution_issue" id="solution_issue" class="form-control"></textarea>
+    <br>        
+    <div align="left">
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </div>
+    </form>
 {% endblock %}
