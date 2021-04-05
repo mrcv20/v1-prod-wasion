@@ -2,9 +2,13 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_utils.functions import database_exists
 from flask_login import LoginManager
+from flask_bootstrap import Bootstrap
 
 
 db = SQLAlchemy()
+
+
+python = 3
 
 
 def create_app():
@@ -12,6 +16,7 @@ def create_app():
     app.config['SECRET_KEY'] = 'whatever'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqldb://root:admin123@localhost/teste'
     db.init_app(app)
+    Bootstrap(app)
 
     from .views import views
     from .auth import auth

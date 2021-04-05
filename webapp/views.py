@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, flash
 from flask_login import login_required, current_user
 from . import db
 from .models import Note
+import pygal
 
 
 views = Blueprint('views', __name__)
@@ -25,3 +26,20 @@ def home():
             db.session.commit()
             flash("Note added", category='success')
     return render_template("home.html", user=current_user)
+    
+
+@login_required
+@views.route('/graphics')    
+def graphics():
+    try:
+        graph = pygal.Line()
+        graph.title = '% Change Coolness of programming lanaguaes over time.'
+        graph.x_labels = ['2011', '2012', '2013', '2014','2015', '2016']
+        graph.add('Python', [11, 17, 51, 325, 356, 900])
+        graph.add('Java', [12, 16, 75, 325, 652, 750])
+        graph.add('C++', [13, 15, 42, 333, 846, 800])
+        graph.add('All others combined', [6, 54, 70, 150, 300, 700])
+        graph_data = graph.render_data_uri()
+        return render_template('graphics.html', graph_data=graph_data)
+    except Exception as e:
+        return(str(e))
