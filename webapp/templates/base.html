@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
         rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -29,10 +29,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbar">
                 <div class="navbar-nav">
+                  
                   {% if user.is_authenticated %}
                   <a class ="nav-item nav-link" id="home" href="/">Home</a>
                   <a class ="nav-item nav-link" id="logout" href="/logout">Logout</a>
                   <a class ="nav-item nav-link" id="graphics" href="/graphics">Gráfico</a>
+                  <a class ="nav-item nav-link" id="data" href="/data">Dados</a>
                   {% else %}
                   <a class ="nav-item nav-link" id="login" href="/login">Login</a>
                   <a class ="nav-item nav-link" id="signup" href="/signup">Signup</a>

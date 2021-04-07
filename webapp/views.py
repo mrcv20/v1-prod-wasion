@@ -28,8 +28,8 @@ def home():
     return render_template("home.html", user=current_user)
     
 
-@login_required
-@views.route('/graphics')    
+@views.route('/graphics')
+@login_required 
 def graphics():
     try:
         graph = pygal.Line()
@@ -40,6 +40,16 @@ def graphics():
         graph.add('C++', [13, 15, 42, 333, 846, 800])
         graph.add('All others combined', [6, 54, 70, 150, 300, 700])
         graph_data = graph.render_data_uri()
-        return render_template('graphics.html', graph_data=graph_data)
+        return render_template('graphics.html', graph_data=graph_data, user=current_user)
+    except Exception as e:
+        return(str(e))
+
+
+@views.route('/data')
+@login_required
+def data():
+    try:
+        all_data = Note.query.all()
+        return render_template('data.html', data=all_data, pageTitle='teste', user=current_user)
     except Exception as e:
         return(str(e))
